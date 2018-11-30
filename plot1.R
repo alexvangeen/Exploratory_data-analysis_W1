@@ -1,0 +1,10 @@
+df <- read.table("household_power_consumption.txt", header = TRUE, sep=';', stringsAsFactors=FALSE, na.strings="?")
+#converting the Date and Time variables to Date/Time classes
+df$Date <- as.Date(df$Date, format = "%d/%m/%Y")
+df <- subset(df, subset = (Date >= "2007-02-01" & Date <= "2007-02-02"))
+#plot 1- histogram Global_active_power (x ) per half kilowats and frequency (y)
+png(filename="plot1.png",width=480,height=480)
+df$Global_active_power <-as.numeric(df$Global_active_power)
+hist(df$Global_active_power, col="red", main="Global Active Power", xlab ="Global Active Power (kilowatts)")
+axis(2, seq(0,1200,200))
+dev.off()
